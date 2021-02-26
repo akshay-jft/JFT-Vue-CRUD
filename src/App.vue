@@ -1,15 +1,13 @@
-<template>
-<div class="container-fluid px-0" id="body">
-  <Login/>
-</div>
-  
+<template> 
   <router-view/>
+  
 </template>
 
 <script>
-import Login from './components/Login.vue'
 export default {
-  components : { Login }
+  components : { },
+  setup(){
+  }
 }
 </script>
 
