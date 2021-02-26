@@ -1,6 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Authentication from '../views/Authentication.vue'
+import { projectAuth } from '../../Firebase/config.js'
+
+const requireAuth = (to, from ,next) =>{
+  let user = projectAuth.currentUser
+  if(!user){
+    next({ name : 'Authentication'})
+  }else{
+    next()
+  }
+}
 const routes = [
   {
     path: '/',
@@ -11,7 +21,8 @@ const routes = [
     path: '/home',
     name: 'Home',
     component: Home,
-    props : true
+    props : true,
+    beforeEnter : requireAuth
   }
 ]
 

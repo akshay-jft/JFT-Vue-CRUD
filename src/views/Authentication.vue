@@ -122,6 +122,7 @@ export default {
     }
     const signUp = async ()=>{
         let data
+        isPending.value = true
         if(sPassword.value === sPass.value){
             const res = await projectAuth.createUserWithEmailAndPassword(sEmail.value, sPassword.value)
             let data = {
@@ -132,8 +133,11 @@ export default {
                 admin : false
             }
             projectFirestore.collection('users').add(data)
+            isPending.value = false
+            router.push({ name : 'Home' })
         }else{
             loginError.value = 'Password mismatch'
+            isPending.value = false
         }
     }
     
